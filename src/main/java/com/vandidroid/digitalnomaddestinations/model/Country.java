@@ -4,10 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import java.util.HashSet;
+import javax.persistence.*;
 import java.util.Objects;
 import java.util.Set;
 
@@ -16,11 +13,12 @@ import java.util.Set;
 @Entity
 public class Country {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
 
     @JsonIgnore
-    @OneToMany
+    @OneToMany(mappedBy = "country")
     private Set<Location> locations;
 
     public Country(String name) {
