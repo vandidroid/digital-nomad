@@ -1,0 +1,2 @@
+# Digital Nomad Destinations
+
