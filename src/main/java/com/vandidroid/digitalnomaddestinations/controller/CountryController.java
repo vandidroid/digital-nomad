@@ -1,11 +1,15 @@
 package com.vandidroid.digitalnomaddestinations.controller;
 
 import com.vandidroid.digitalnomaddestinations.model.Country;
+import com.vandidroid.digitalnomaddestinations.model.DigitalNomad;
+import com.vandidroid.digitalnomaddestinations.model.Location;
 import com.vandidroid.digitalnomaddestinations.service.CountryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequiredArgsConstructor
@@ -21,6 +25,17 @@ public class CountryController {
     @GetMapping("/{id}")
     public Country findById(@PathVariable Long id) {
         return countryService.findById(id);
+    }
+
+    @GetMapping("/{id}/locations")
+    public Set<Location> findLocationsByCountryId(@PathVariable Long id) {
+        return countryService.findById(id).getLocations();
+    }
+
+    @GetMapping("/{id}/nomads")
+    public Set<DigitalNomad> findDigitalNomadsByCountryId(@PathVariable Long id) {
+        // TODO
+        return new HashSet<>();
     }
 
     @PostMapping("")
