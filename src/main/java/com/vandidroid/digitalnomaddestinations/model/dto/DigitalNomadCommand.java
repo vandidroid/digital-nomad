@@ -1,26 +1,18 @@
-package com.vandidroid.digitalnomaddestinations.model;
+package com.vandidroid.digitalnomaddestinations.model.dto;
 
+import com.vandidroid.digitalnomaddestinations.model.Gender;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
-public class DigitalNomad {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
+public class DigitalNomadCommand {
     private String email;
     private String firstName;
     private String lastName;
     private String nickname;
     private Gender gender;
-
-    @ManyToOne
-    private Location location;
+    private Long locationId;
 }

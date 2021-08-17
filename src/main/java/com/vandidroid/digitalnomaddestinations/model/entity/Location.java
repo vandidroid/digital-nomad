@@ -1,4 +1,4 @@
-package com.vandidroid.digitalnomaddestinations.model;
+package com.vandidroid.digitalnomaddestinations.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;

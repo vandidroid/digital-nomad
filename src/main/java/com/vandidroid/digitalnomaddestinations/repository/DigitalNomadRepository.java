@@ -1,6 +1,6 @@
 package com.vandidroid.digitalnomaddestinations.repository;
 
-import com.vandidroid.digitalnomaddestinations.model.DigitalNomad;
+import com.vandidroid.digitalnomaddestinations.model.entity.DigitalNomad;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

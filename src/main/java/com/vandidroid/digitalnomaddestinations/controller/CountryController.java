@@ -1,8 +1,9 @@
 package com.vandidroid.digitalnomaddestinations.controller;
 
-import com.vandidroid.digitalnomaddestinations.model.Country;
-import com.vandidroid.digitalnomaddestinations.model.DigitalNomad;
-import com.vandidroid.digitalnomaddestinations.model.Location;
+import com.vandidroid.digitalnomaddestinations.model.dto.CountryCommand;
+import com.vandidroid.digitalnomaddestinations.model.entity.Country;
+import com.vandidroid.digitalnomaddestinations.model.entity.DigitalNomad;
+import com.vandidroid.digitalnomaddestinations.model.entity.Location;
 import com.vandidroid.digitalnomaddestinations.service.CountryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -39,13 +40,13 @@ public class CountryController {
     }
 
     @PostMapping("")
-    public Country add(@RequestBody Country country) {
-        return countryService.add(country);
+    public Country add(@RequestBody CountryCommand countryCommand) {
+        return countryService.add(countryCommand);
     }
 
     @PutMapping("/{id}")
-    public Country update(@PathVariable Long id, @RequestBody Country country) {
-        return countryService.update(id, country);
+    public Country update(@PathVariable Long id, @RequestBody CountryCommand countryCommand) {
+        return countryService.update(id, countryCommand);
     }
 
     @DeleteMapping("/{id}")

@@ -1,7 +1,8 @@
 package com.vandidroid.digitalnomaddestinations.controller;
 
-import com.vandidroid.digitalnomaddestinations.model.DigitalNomad;
-import com.vandidroid.digitalnomaddestinations.model.Location;
+import com.vandidroid.digitalnomaddestinations.model.dto.LocationCommand;
+import com.vandidroid.digitalnomaddestinations.model.entity.DigitalNomad;
+import com.vandidroid.digitalnomaddestinations.model.entity.Location;
 import com.vandidroid.digitalnomaddestinations.service.LocationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -31,13 +32,13 @@ public class LocationController {
     }
 
     @PostMapping("")
-    public Location add(@RequestBody Location location) {
-        return locationService.add(location);
+    public Location add(@RequestBody LocationCommand locationCommand) {
+        return locationService.add(locationCommand);
     }
 
     @PutMapping("/{id}")
-    public Location update(@PathVariable Long id, @RequestBody Location location) {
-        return locationService.update(id,location);
+    public Location update(@PathVariable Long id, @RequestBody LocationCommand locationCommand) {
+        return locationService.update(id, locationCommand);
     }
 
     @DeleteMapping("/{id}")

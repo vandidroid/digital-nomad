@@ -1,6 +1,7 @@
 package com.vandidroid.digitalnomaddestinations.service;
 
-import com.vandidroid.digitalnomaddestinations.model.Country;
+import com.vandidroid.digitalnomaddestinations.model.dto.CountryCommand;
+import com.vandidroid.digitalnomaddestinations.model.entity.Country;
 import com.vandidroid.digitalnomaddestinations.repository.CountryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -16,7 +17,10 @@ public class CountryService {
         return countryRepository.findAll();
     }
 
-    public Country add(Country country) {
+    public Country add(CountryCommand countryCommand) {
+        Country country = new Country();
+        country.setName(countryCommand.getName());
+
         return countryRepository.save(country);
     }
 
@@ -28,8 +32,12 @@ public class CountryService {
         countryRepository.deleteById(id);
     }
 
-    public Country update(Long id, Country country) {
+    public Country update(Long id, CountryCommand countryCommand) {
+
+        Country country = new Country();
         country.setId(id);
+        country.setName(countryCommand.getName());
+
         return countryRepository.save(country);
     }
 }

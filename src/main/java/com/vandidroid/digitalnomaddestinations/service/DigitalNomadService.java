@@ -1,7 +1,10 @@
 package com.vandidroid.digitalnomaddestinations.service;
 
-import com.vandidroid.digitalnomaddestinations.model.DigitalNomad;
+import com.vandidroid.digitalnomaddestinations.model.dto.DigitalNomadCommand;
+import com.vandidroid.digitalnomaddestinations.model.entity.DigitalNomad;
+import com.vandidroid.digitalnomaddestinations.model.entity.Location;
 import com.vandidroid.digitalnomaddestinations.repository.DigitalNomadRepository;
+import com.vandidroid.digitalnomaddestinations.repository.LocationRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +14,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class DigitalNomadService {
     private final DigitalNomadRepository digitalNomadRepository;
+    private final LocationRepository locationRepository;
 
     public List<DigitalNomad> findAll() {
         return digitalNomadRepository.findAll();
@@ -28,12 +32,30 @@ public class DigitalNomadService {
         digitalNomadRepository.deleteById(id);
     }
 
-    public DigitalNomad add(DigitalNomad digitalNomad) {
+    public DigitalNomad add(DigitalNomadCommand digitalNomadCommand) {
+        DigitalNomad digitalNomad = new DigitalNomad();
+        digitalNomad.setFirstName(digitalNomadCommand.getFirstName());
+        digitalNomad.setLastName(digitalNomadCommand.getLastName());
+        digitalNomad.setNickname(digitalNomadCommand.getNickname());
+        digitalNomad.setEmail(digitalNomadCommand.getEmail());
+        digitalNomad.setGender(digitalNomadCommand.getGender());
+        Location location = locationRepository.findById(digitalNomadCommand.getLocationId()).orElseThrow(RuntimeException::new);
+        digitalNomad.setLocation(location);
+
         return digitalNomadRepository.save(digitalNomad);
     }
 
-    public DigitalNomad update(Long id, DigitalNomad digitalNomad) {
+    public DigitalNomad update(Long id, DigitalNomadCommand digitalNomadCommand) {
+        DigitalNomad digitalNomad = new DigitalNomad();
         digitalNomad.setId(id);
+        digitalNomad.setFirstName(digitalNomadCommand.getFirstName());
+        digitalNomad.setLastName(digitalNomadCommand.getLastName());
+        digitalNomad.setNickname(digitalNomadCommand.getNickname());
+        digitalNomad.setEmail(digitalNomadCommand.getEmail());
+        digitalNomad.setGender(digitalNomadCommand.getGender());
+        Location location = locationRepository.findById(digitalNomadCommand.getLocationId()).orElseThrow(RuntimeException::new);
+        digitalNomad.setLocation(location);
+
         return digitalNomadRepository.save(digitalNomad);
     }
 }

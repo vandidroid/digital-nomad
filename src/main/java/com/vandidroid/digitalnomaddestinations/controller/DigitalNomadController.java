@@ -1,6 +1,7 @@
 package com.vandidroid.digitalnomaddestinations.controller;
 
-import com.vandidroid.digitalnomaddestinations.model.DigitalNomad;
+import com.vandidroid.digitalnomaddestinations.model.dto.DigitalNomadCommand;
+import com.vandidroid.digitalnomaddestinations.model.entity.DigitalNomad;
 import com.vandidroid.digitalnomaddestinations.service.DigitalNomadService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -24,13 +25,13 @@ public class DigitalNomadController {
     }
 
     @PostMapping("")
-    public DigitalNomad add(@RequestBody DigitalNomad digitalNomad) {
-        return digitalNomadService.add(digitalNomad);
+    public DigitalNomad add(@RequestBody DigitalNomadCommand digitalNomadCommand) {
+        return digitalNomadService.add(digitalNomadCommand);
     }
 
     @PutMapping("/{id}")
-    public DigitalNomad update(@PathVariable Long id, @RequestBody DigitalNomad digitalNomad) {
-        return digitalNomadService.update(id, digitalNomad);
+    public DigitalNomad update(@PathVariable Long id, @RequestBody DigitalNomadCommand digitalNomadCommand) {
+        return digitalNomadService.update(id, digitalNomadCommand);
     }
 
     @DeleteMapping("/{id}")
