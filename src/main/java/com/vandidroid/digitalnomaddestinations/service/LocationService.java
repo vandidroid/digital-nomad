@@ -16,7 +16,7 @@ public class LocationService {
         return locationRepository.findAll();
     }
 
-    public Location save(Location location) {
+    public Location add(Location location) {
         return locationRepository.save(location);
     }
 
@@ -26,5 +26,10 @@ public class LocationService {
 
     public void deleteById(Long id) {
         locationRepository.deleteById(id);
+    }
+
+    public Location update(Long id, Location location) {
+        location.setId(id);
+        return locationRepository.save(location);
     }
 }

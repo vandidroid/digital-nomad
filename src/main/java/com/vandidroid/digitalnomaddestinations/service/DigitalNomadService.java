@@ -27,4 +27,13 @@ public class DigitalNomadService {
     public void deleteById(Long id) {
         digitalNomadRepository.deleteById(id);
     }
+
+    public DigitalNomad add(DigitalNomad digitalNomad) {
+        return digitalNomadRepository.save(digitalNomad);
+    }
+
+    public DigitalNomad update(Long id, DigitalNomad digitalNomad) {
+        digitalNomad.setId(id);
+        return digitalNomadRepository.save(digitalNomad);
+    }
 }

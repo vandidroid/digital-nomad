@@ -40,13 +40,12 @@ public class CountryController {
 
     @PostMapping("")
     public Country add(@RequestBody Country country) {
-        return countryService.save(country);
+        return countryService.add(country);
     }
 
     @PutMapping("/{id}")
     public Country update(@PathVariable Long id, @RequestBody Country country) {
-        country.setId(id);
-        return countryService.save(country);
+        return countryService.update(id, country);
     }
 
     @DeleteMapping("/{id}")

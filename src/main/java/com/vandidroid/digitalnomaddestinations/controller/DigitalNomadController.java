@@ -25,13 +25,12 @@ public class DigitalNomadController {
 
     @PostMapping("")
     public DigitalNomad add(@RequestBody DigitalNomad digitalNomad) {
-        return digitalNomadService.save(digitalNomad);
+        return digitalNomadService.add(digitalNomad);
     }
 
     @PutMapping("/{id}")
     public DigitalNomad update(@PathVariable Long id, @RequestBody DigitalNomad digitalNomad) {
-        digitalNomad.setId(id);
-        return digitalNomadService.save(digitalNomad);
+        return digitalNomadService.update(id, digitalNomad);
     }
 
     @DeleteMapping("/{id}")

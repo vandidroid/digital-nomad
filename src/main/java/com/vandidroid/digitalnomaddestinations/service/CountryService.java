@@ -16,7 +16,7 @@ public class CountryService {
         return countryRepository.findAll();
     }
 
-    public Country save(Country country) {
+    public Country add(Country country) {
         return countryRepository.save(country);
     }
 
@@ -26,5 +26,10 @@ public class CountryService {
 
     public void deleteById(Long id) {
         countryRepository.deleteById(id);
+    }
+
+    public Country update(Long id, Country country) {
+        country.setId(id);
+        return countryRepository.save(country);
     }
 }
