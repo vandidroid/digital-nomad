@@ -6,6 +6,7 @@ import com.vandidroid.digitalnomaddestinations.model.entity.DigitalNomad;
 import com.vandidroid.digitalnomaddestinations.model.entity.Location;
 import com.vandidroid.digitalnomaddestinations.service.CountryService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashSet;
@@ -40,6 +41,7 @@ public class CountryController {
     }
 
     @PostMapping("")
+    @ResponseStatus(HttpStatus.CREATED)
     public Country add(@RequestBody CountryCommand countryCommand) {
         return countryService.add(countryCommand);
     }
@@ -50,6 +52,7 @@ public class CountryController {
     }
 
     @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteById(@PathVariable Long id) {
         countryService.deleteById(id);
     }

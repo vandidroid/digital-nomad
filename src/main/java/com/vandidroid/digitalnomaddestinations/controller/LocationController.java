@@ -5,6 +5,7 @@ import com.vandidroid.digitalnomaddestinations.model.entity.DigitalNomad;
 import com.vandidroid.digitalnomaddestinations.model.entity.Location;
 import com.vandidroid.digitalnomaddestinations.service.LocationService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -32,6 +33,7 @@ public class LocationController {
     }
 
     @PostMapping("")
+    @ResponseStatus(HttpStatus.CREATED)
     public Location add(@RequestBody LocationCommand locationCommand) {
         return locationService.add(locationCommand);
     }
@@ -42,6 +44,7 @@ public class LocationController {
     }
 
     @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteById(@PathVariable Long id) {
         locationService.deleteById(id);
     }
