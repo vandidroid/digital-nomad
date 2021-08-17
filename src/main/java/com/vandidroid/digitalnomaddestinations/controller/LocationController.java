@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Set;
 
@@ -34,12 +35,12 @@ public class LocationController {
 
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
-    public Location add(@RequestBody LocationCommand locationCommand) {
+    public Location add(@Valid @RequestBody LocationCommand locationCommand) {
         return locationService.add(locationCommand);
     }
 
     @PutMapping("/{id}")
-    public Location update(@PathVariable Long id, @RequestBody LocationCommand locationCommand) {
+    public Location update(@PathVariable Long id, @Valid @RequestBody LocationCommand locationCommand) {
         return locationService.update(id, locationCommand);
     }
 

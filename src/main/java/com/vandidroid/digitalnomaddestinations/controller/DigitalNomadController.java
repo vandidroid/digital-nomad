@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -27,12 +28,12 @@ public class DigitalNomadController {
 
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
-    public DigitalNomad add(@RequestBody DigitalNomadCommand digitalNomadCommand) {
+    public DigitalNomad add(@Valid @RequestBody DigitalNomadCommand digitalNomadCommand) {
         return digitalNomadService.add(digitalNomadCommand);
     }
 
     @PutMapping("/{id}")
-    public DigitalNomad update(@PathVariable Long id, @RequestBody DigitalNomadCommand digitalNomadCommand) {
+    public DigitalNomad update(@PathVariable Long id, @Valid @RequestBody DigitalNomadCommand digitalNomadCommand) {
         return digitalNomadService.update(id, digitalNomadCommand);
     }
 

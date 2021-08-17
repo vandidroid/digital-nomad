@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -42,12 +43,12 @@ public class CountryController {
 
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
-    public Country add(@RequestBody CountryCommand countryCommand) {
+    public Country add(@Valid @RequestBody CountryCommand countryCommand) {
         return countryService.add(countryCommand);
     }
 
     @PutMapping("/{id}")
-    public Country update(@PathVariable Long id, @RequestBody CountryCommand countryCommand) {
+    public Country update(@PathVariable Long id, @Valid @RequestBody CountryCommand countryCommand) {
         return countryService.update(id, countryCommand);
     }
 
