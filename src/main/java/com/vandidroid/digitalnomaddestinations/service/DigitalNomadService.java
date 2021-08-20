@@ -58,4 +58,12 @@ public class DigitalNomadService {
 
         return digitalNomadRepository.save(digitalNomad);
     }
+
+    public DigitalNomad relocate(Long id, Long locationId) {
+        Location location = locationRepository.findById(locationId).orElseThrow(RuntimeException::new);
+        DigitalNomad digitalNomad = findById(id);
+        digitalNomad.setLocation(location);
+
+        return digitalNomadRepository.save(digitalNomad);
+    }
 }
