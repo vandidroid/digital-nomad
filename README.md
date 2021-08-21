@@ -34,7 +34,7 @@ It helps you choose the best destinations and keep in touch with other nomads.
 - GET /nomads/{id} Get a digital nomad by its id.
 - PUT /nomads/{id} Update a digital nomad by its id.
 - DELETE /nomads/{id} Delete a digital nomad by its id.
-- PATCH /nomads/{id}/relocate/{locationId} Update a digital nomad's location by its id.
+- PUT /nomads/{id}/relocate/{locationId} Update a digital nomad's location by its id.
 
 ## 2. Database Diagram
 
