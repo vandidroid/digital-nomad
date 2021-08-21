@@ -46,7 +46,7 @@ public class DigitalNomadService {
     }
 
     public DigitalNomad update(Long id, DigitalNomadCommand digitalNomadCommand) {
-        DigitalNomad digitalNomad = new DigitalNomad();
+        DigitalNomad digitalNomad = digitalNomadRepository.findById(id).orElseThrow(RuntimeException::new);
         digitalNomad.setId(id);
         digitalNomad.setFirstName(digitalNomadCommand.getFirstName());
         digitalNomad.setLastName(digitalNomadCommand.getLastName());

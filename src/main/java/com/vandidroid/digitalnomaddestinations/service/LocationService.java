@@ -37,7 +37,7 @@ public class LocationService {
     }
 
     public Location update(Long id, LocationCommand locationCommand) {
-        Location location = new Location();
+        Location location = locationRepository.findById(id).orElseThrow(RuntimeException::new);
         location.setId(id);
         location.setName(locationCommand.getName());
         Country country = countryRepository.findById(locationCommand.getCountryId()).orElseThrow(RuntimeException::new);

@@ -37,8 +37,7 @@ public class CountryService {
     }
 
     public Country update(Long id, CountryCommand countryCommand) {
-
-        Country country = new Country();
+        Country country = countryRepository.findById(id).orElseThrow(RuntimeException::new);
         country.setId(id);
         country.setName(countryCommand.getName());
 
