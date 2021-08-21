@@ -20,8 +20,8 @@ import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class CountryServiceTest {
-    private static CountryRepository countryRepository = Mockito.mock(CountryRepository.class);
-    private static DigitalNomadRepository digitalNomadRepository = Mockito.mock(DigitalNomadRepository.class);
+    private final static CountryRepository countryRepository = Mockito.mock(CountryRepository.class);
+    private final static DigitalNomadRepository digitalNomadRepository = Mockito.mock(DigitalNomadRepository.class);
 
     private static CountryService countryService;
 
@@ -53,10 +53,12 @@ class CountryServiceTest {
 
     @Test
     void findById() {
-        when(countryRepository.findById(1L)).thenReturn(Optional.of(countries.get(0)));
+        long id =1;
 
-        Country country = countryService.findById(1L);
-        assertThat(country.getId()).isEqualTo(1L);
+        when(countryRepository.findById(id)).thenReturn(Optional.of(countries.get(0)));
+
+        Country country = countryService.findById(id);
+        assertThat(country.getId()).isEqualTo(id);
         assertThat(country.getName()).isEqualTo(countries.get(0).getName());
     }
 

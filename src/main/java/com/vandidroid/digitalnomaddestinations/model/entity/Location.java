@@ -27,6 +27,12 @@ public class Location {
     @OneToMany(mappedBy = "location")
     private Set<DigitalNomad> digitalNomads;
 
+    public Location(Long id, String name, Country country) {
+        this.id = id;
+        this.name = name;
+        this.country = country;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
