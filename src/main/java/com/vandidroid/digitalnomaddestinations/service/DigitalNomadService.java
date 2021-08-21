@@ -20,10 +20,6 @@ public class DigitalNomadService {
         return digitalNomadRepository.findAll();
     }
 
-    public DigitalNomad save(DigitalNomad digitalNomad) {
-        return digitalNomadRepository.save(digitalNomad);
-    }
-
     public DigitalNomad findById(Long id) {
         return digitalNomadRepository.findById(id).orElseThrow(RuntimeException::new);
     }

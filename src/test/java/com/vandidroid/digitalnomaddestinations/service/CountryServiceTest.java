@@ -65,9 +65,7 @@ class CountryServiceTest {
     @Test
     void deleteById() {
         Long id = 1L;
-
         doNothing().when(countryRepository).deleteById(id);
-
         countryService.deleteById(id);
         verify(countryRepository, times(1)).deleteById(id);
     }
@@ -75,10 +73,9 @@ class CountryServiceTest {
     @Test
     void update() {
         CountryCommand countryCommand = new CountryCommand("Italy");
-
         Country country = new Country(3L, "Italy");
+        when(countryRepository.findById(3L)).thenReturn(Optional.of(country));
         when(countryRepository.save(country)).thenReturn(country);
-
         Country updatedCountry = countryService.update(3L, countryCommand);
         assertThat(updatedCountry.getName()).isEqualTo(countryCommand.getName());
     }

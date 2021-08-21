@@ -83,6 +83,7 @@ class LocationServiceTest {
         Location wien = new Location(3L, "Wien", austria);
 
         when(countryRepository.findById(austria.getId())).thenReturn(Optional.of(austria));
+        when(locationRepository.findById(3L)).thenReturn(Optional.of(wien));
         when(locationRepository.save(wien)).thenReturn(wien);
         Location location = locationService.update(3L, new LocationCommand("Wien", austria.getId()));
 
