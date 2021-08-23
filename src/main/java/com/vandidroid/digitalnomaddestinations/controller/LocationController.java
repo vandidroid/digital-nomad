@@ -5,12 +5,14 @@ import com.vandidroid.digitalnomaddestinations.model.entity.DigitalNomad;
 import com.vandidroid.digitalnomaddestinations.model.entity.Location;
 import com.vandidroid.digitalnomaddestinations.service.LocationService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Min;
 import java.util.List;
 import java.util.Set;
 
@@ -29,13 +31,13 @@ public class LocationController {
 
     @GetMapping(value = "/{id}", produces = {"application/json"})
     @Operation(summary = "Find a location", description = "Find a location by its id")
-    public Location findById(@PathVariable Long id) {
+    public Location findById(@Parameter(description = "The id of the location", required = true, example = "1") @Min(1)  @PathVariable Long id) {
         return locationService.findById(id);
     }
 
     @GetMapping(value = "/{id}/nomads", produces = {"application/json"})
     @Operation(summary = "Find all nomads from a location", description = "Find all nomads from a location by the location id")
-    public Set<DigitalNomad> findNomadsByLocationId(@PathVariable Long id) {
+    public Set<DigitalNomad> findNomadsByLocationId(@Parameter(description = "The id of the location", required = true, example = "1") @Min(1) @PathVariable Long id) {
         return locationService.findById(id).getDigitalNomads();
     }
 
@@ -48,14 +50,14 @@ public class LocationController {
 
     @PutMapping(value = "/{id}", produces = {"application/json"})
     @Operation(summary = "Update a location", description = "Update a location by its id")
-    public Location update(@PathVariable Long id, @Valid @RequestBody LocationCommand locationCommand) {
+    public Location update(@Parameter(description = "The id of the location", required = true, example = "1") @Min(1) @PathVariable Long id, @Valid @RequestBody LocationCommand locationCommand) {
         return locationService.update(id, locationCommand);
     }
 
     @DeleteMapping(value = "/{id}", produces = {"application/json"})
     @Operation(summary = "Delete a location", description = "Delete a location by its id")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteById(@PathVariable Long id) {
+    public void deleteById(@Parameter(description = "The id of the location", required = true, example = "1") @Min(1) @PathVariable Long id) {
         locationService.deleteById(id);
     }
 }

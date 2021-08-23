@@ -6,12 +6,14 @@ import com.vandidroid.digitalnomaddestinations.model.entity.DigitalNomad;
 import com.vandidroid.digitalnomaddestinations.model.entity.Location;
 import com.vandidroid.digitalnomaddestinations.service.CountryService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Min;
 import java.util.List;
 import java.util.Set;
 
@@ -30,19 +32,19 @@ public class CountryController {
 
     @GetMapping(value = "/{id}", produces = {"application/json"})
     @Operation(summary = "Find a country", description = "Find a country by its id")
-    public Country findById(@PathVariable Long id) {
+    public Country findById(@Parameter(description = "The id of the country", required = true, example = "1") @Min(1) @PathVariable Long id) {
         return countryService.findById(id);
     }
 
     @GetMapping(value = "/{id}/locations", produces = {"application/json"})
     @Operation(summary = "Find all locations from a country", description = "Find all locations from a country by the country id")
-    public Set<Location> findLocationsByCountryId(@PathVariable Long id) {
+    public Set<Location> findLocationsByCountryId(@Parameter(description = "The id of the country", required = true, example = "1") @Min(1) @PathVariable Long id) {
         return countryService.findById(id).getLocations();
     }
 
     @GetMapping(value = "/{id}/nomads", produces = {"application/json"})
     @Operation(summary = "Find all digital nomads from a country", description = "Find all digital nomads from a country by the country id")
-    public Set<DigitalNomad> findDigitalNomadsByCountryId(@PathVariable Long id) {
+    public Set<DigitalNomad> findDigitalNomadsByCountryId(@Parameter(description = "The id of the country", required = true, example = "1") @Min(1) @PathVariable Long id) {
         return countryService.findNomadsByCountryId(id);
     }
 
@@ -55,14 +57,14 @@ public class CountryController {
 
     @PutMapping(value = "/{id}", produces = {"application/json"})
     @Operation(summary = "Update a country", description = "Update a country by its id")
-    public Country update(@PathVariable Long id, @Valid @RequestBody CountryCommand countryCommand) {
+    public Country update(@Parameter(description = "The id of the country", required = true, example = "1") @Min(1) @PathVariable Long id, @Valid @RequestBody CountryCommand countryCommand) {
         return countryService.update(id, countryCommand);
     }
 
     @DeleteMapping(value = "/{id}", produces = {"application/json"})
     @Operation(summary = "Delete a country", description = "Delete a country by its id")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteById(@PathVariable Long id) {
+    public void deleteById(@Parameter(description = "The id of the country", required = true, example = "1") @Min(1) @PathVariable Long id) {
         countryService.deleteById(id);
     }
 }
