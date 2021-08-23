@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Data
 @NoArgsConstructor
@@ -24,4 +25,30 @@ public class DigitalNomad {
 
     @ManyToOne
     private Location location;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        DigitalNomad that = (DigitalNomad) o;
+        return Objects.equals(id, that.id) && email.equals(that.email) && nickname.equals(that.nickname);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, email, nickname);
+    }
+
+    @Override
+    public String toString() {
+        return "DigitalNomad{" +
+                "id=" + id +
+                ", email='" + email + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", nickname='" + nickname + '\'' +
+                ", gender=" + gender +
+                ", location=" + location +
+                '}';
+    }
 }

@@ -45,4 +45,13 @@ public class Location {
     public int hashCode() {
         return Objects.hash(id, name);
     }
+
+    @Override
+    public String toString() {
+        return "Location{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", country=" + country +
+                '}';
+    }
 }
