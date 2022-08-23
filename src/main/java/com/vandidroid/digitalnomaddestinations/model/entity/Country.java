@@ -3,6 +3,7 @@ package com.vandidroid.digitalnomaddestinations.model.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 import java.util.Objects;
@@ -16,6 +17,12 @@ public class Country {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+
+    @Nullable
+    private Long population;
+
+    @Nullable
+    private Double area;
 
     @JsonIgnore
     @OneToMany(mappedBy = "country")
