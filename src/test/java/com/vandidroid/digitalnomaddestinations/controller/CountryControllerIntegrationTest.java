@@ -26,7 +26,7 @@ class CountryControllerIntegrationTest {
 
     @Test
     @Order(1)
-    void findAll() {
+    void findAll_returns_with_a_collection_of_countries() {
         ResponseEntity<Country[]> responseEntity = testRestTemplate.getForEntity("/countries", Country[].class);
         assertThat(responseEntity.getStatusCodeValue()).isEqualTo(200);
         assertThat(responseEntity.hasBody()).isTrue();
@@ -37,7 +37,7 @@ class CountryControllerIntegrationTest {
 
     @Test
     @Order(2)
-    void findById() {
+    void findById_returns_the_correct_country() {
         ResponseEntity<Country> responseEntity = testRestTemplate.getForEntity("/countries/1", Country.class);
         assertThat(responseEntity.getStatusCodeValue()).isEqualTo(200);
         assertThat(responseEntity.hasBody()).isTrue();
@@ -47,7 +47,7 @@ class CountryControllerIntegrationTest {
 
     @Test
     @Order(3)
-    void findLocationsByCountryId() {
+    void findLocationsByCountryId_returns_all_locations_from_a_given_country() {
         ResponseEntity<Location[]> responseEntity = testRestTemplate.getForEntity("/countries/1/locations", Location[].class);
         assertThat(responseEntity.getStatusCodeValue()).isEqualTo(200);
         assertThat(responseEntity.hasBody()).isTrue();
@@ -57,7 +57,7 @@ class CountryControllerIntegrationTest {
 
     @Test
     @Order(4)
-    void findDigitalNomadsByCountryId() {;
+    void findDigitalNomadsByCountryId_returns_all_nomads_from_a_given_country() {;
         ResponseEntity<DigitalNomad[]> responseEntity = testRestTemplate.getForEntity("/countries/2/nomads", DigitalNomad[].class);
         assertThat(responseEntity.getStatusCodeValue()).isEqualTo(200);
         assertThat(responseEntity.hasBody()).isTrue();
@@ -67,7 +67,7 @@ class CountryControllerIntegrationTest {
 
     @Test
     @Order(5)
-    void add() {
+    void add_creates_inserts_a_country() {
         CountryCommand countryCommand = new CountryCommand("Thailand");
         HttpEntity<CountryCommand> httpEntity = new HttpEntity<>(countryCommand);
         ResponseEntity<Country> responseEntity = testRestTemplate.postForEntity("/countries", httpEntity, Country.class);
@@ -92,7 +92,7 @@ class CountryControllerIntegrationTest {
 
     @Test
     @Order(7)
-    void deleteById() {
+    void deleteById_works_as_expected() {
         ResponseEntity<Void> responseEntity = testRestTemplate.exchange("/countries/4", HttpMethod.DELETE, null, Void.class);
         assertThat(responseEntity.getStatusCodeValue()).isEqualTo(204);
         assertThat(responseEntity.hasBody()).isFalse();
