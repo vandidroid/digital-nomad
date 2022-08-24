@@ -28,7 +28,7 @@ class DigitalNomadServiceTest {
 
     private static DigitalNomadService digitalNomadService;
 
-    private static List<DigitalNomad> digitalNomads = List.of(new DigitalNomad(1L, "john.doe@gmail.com", "John", "Doe", "Joe", Gender.MALE, new Location(1L, "Chicago", new Country(1L, "USA"))));
+    private static List<DigitalNomad> digitalNomads = List.of(new DigitalNomad(1L, "john.doe@gmail.com", "John", "Doe", "Joe", Gender.MALE, new Location(1L, "Chicago", new Country(1L, "USA", (double)0, 0L))));
 
     @BeforeAll
     static void beforeAll() {
@@ -62,7 +62,7 @@ class DigitalNomadServiceTest {
 
     @Test
     void add() {
-        Location location = new Location(1L, "Boston", new Country(1L, "USA"));
+        Location location = new Location(1L, "Boston", new Country(1L, "USA", (double)0, 0L));
 
         DigitalNomad digitalNomad = new DigitalNomad();
         digitalNomad.setEmail("jane.doe@gmail.com");
@@ -85,7 +85,7 @@ class DigitalNomadServiceTest {
 
     @Test
     void update() {
-        Location location = new Location(1L, "Boston", new Country(1L, "USA"));
+        Location location = new Location(1L, "Boston", new Country(1L, "USA", (double)0, 0L));
 
         DigitalNomad digitalNomad = new DigitalNomad();
         digitalNomad.setId(1L);
@@ -109,10 +109,10 @@ class DigitalNomadServiceTest {
 
     @Test
     void relocate() {
-        Location budapest = new Location(1L, "Budapest", new Country(1L, "Hungary"));
+        Location budapest = new Location(1L, "Budapest", new Country(1L, "Hungary", (double)0, 0L));
         when(locationRepository.findById(1l)).thenReturn(Optional.of(budapest));
 
-        Location wien = new Location(2L, "Wien", new Country(2L, "Austria"));
+        Location wien = new Location(2L, "Wien", new Country(2L, "Austria", (double)0, 0L));
         when(locationRepository.findById(2l)).thenReturn(Optional.of(wien));
 
         DigitalNomad digitalNomad = new DigitalNomad();
