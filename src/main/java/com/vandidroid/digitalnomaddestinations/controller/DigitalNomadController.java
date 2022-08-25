@@ -16,7 +16,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/nomads")
+@RequestMapping("/api/nomads")
 @Tag(name = "The Digital Nomad API", description = "The Digital Nomad API")
 public class DigitalNomadController {
     private final DigitalNomadService digitalNomadService;
