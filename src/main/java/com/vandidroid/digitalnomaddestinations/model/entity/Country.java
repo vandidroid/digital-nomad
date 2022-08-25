@@ -1,8 +1,10 @@
 package com.vandidroid.digitalnomaddestinations.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 import java.util.Objects;
@@ -11,11 +13,18 @@ import java.util.Set;
 @Data
 @NoArgsConstructor
 @Entity
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Country {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+
+    @Nullable
+    private Long population;
+
+    @Nullable
+    private Double area;
 
     @JsonIgnore
     @OneToMany(mappedBy = "country")
@@ -25,9 +34,16 @@ public class Country {
         this.name = name;
     }
 
-    public Country(Long id, String name) {
+    public Country(String name, Double area, Long population) {
+        this.name = name;
+        this.area = area;
+        this.population = population;
+    }
+    public Country(Long id, String name, Double area, Long population) {
         this.id = id;
         this.name = name;
+        this.area = area;
+        this.population = population;
     }
 
     @Override
@@ -48,6 +64,8 @@ public class Country {
         return "Country{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", population=" + population +
+                ", area=" + area +
                 '}';
     }
 }

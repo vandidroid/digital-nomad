@@ -27,8 +27,8 @@ class LocationServiceTest {
     private static LocationService locationService;
 
     private final List<Location> locations = List.of(
-            new Location(1L, "Budapest", new Country(1L, "Hungary")),
-            new Location(2L, "Tokyo", new Country(1L, "Japan"))
+            new Location(1L, "Budapest", new Country(1L, "Hungary", (double)0, 0L)),
+            new Location(2L, "Tokyo", new Country(1L, "Japan", (double)0, 0L))
     );
 
     @BeforeAll
@@ -46,7 +46,7 @@ class LocationServiceTest {
 
     @Test
     void add() {
-        Country austria = new Country(3L, "Austria");
+        Country austria = new Country(3L, "Austria", (double)0, 0L);
         Location wien = new Location(3L, "Wien", austria);
 
         when(countryRepository.findById(austria.getId())).thenReturn(Optional.of(austria));
@@ -79,7 +79,7 @@ class LocationServiceTest {
 
     @Test
     void update() {
-        Country austria = new Country(3L, "Austria");
+        Country austria = new Country(3L, "Austria", (double)0, 0L);
         Location wien = new Location(3L, "Wien", austria);
 
         when(countryRepository.findById(austria.getId())).thenReturn(Optional.of(austria));

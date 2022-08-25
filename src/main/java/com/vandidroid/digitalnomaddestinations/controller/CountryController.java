@@ -19,7 +19,7 @@ import java.util.Set;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/countries")
+@RequestMapping("/api/countries")
 @Tag(name = "The Country API", description = "The Country API")
 public class CountryController {
     private final CountryService countryService;

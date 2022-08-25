@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 
 @Hidden
 @RestController
-@RequestMapping("/error")
+@RequestMapping("/api/error")
 public class DefaultErrorController implements ErrorController {
     @RequestMapping("")
     public ErrorObject handleError(HttpServletRequest request) {

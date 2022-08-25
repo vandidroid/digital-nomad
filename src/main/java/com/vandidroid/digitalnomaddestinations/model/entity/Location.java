@@ -20,6 +20,9 @@ public class Location {
 
     private String name;
 
+    private Long population;
+    private double area;
+
     @ManyToOne
     private Country country;
 

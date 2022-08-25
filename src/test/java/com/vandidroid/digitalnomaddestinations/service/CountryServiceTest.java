@@ -25,7 +25,7 @@ class CountryServiceTest {
 
     private static CountryService countryService;
 
-    private static List<Country> countries = List.of(new Country(1L,"Hungary"), new Country(2L,"Japan"));
+    private static List<Country> countries = List.of(new Country(1L,"Hungary", (double)0, 0L), new Country(2L,"Japan", (double)0, 0L));
 
     @BeforeAll
     static void beforeAll() {
@@ -42,7 +42,7 @@ class CountryServiceTest {
 
     @Test
     void add() {
-        Country country = new Country("Spain");
+        Country country = new Country("Spain", (double)0, 0L);
         CountryCommand countryCommand = new CountryCommand("Spain");
 
         when(countryRepository.save(country)).thenReturn(country);
@@ -73,7 +73,7 @@ class CountryServiceTest {
     @Test
     void update() {
         CountryCommand countryCommand = new CountryCommand("Italy");
-        Country country = new Country(3L, "Italy");
+        Country country = new Country(3L, "Italy", (double)0, 0L);
         when(countryRepository.findById(3L)).thenReturn(Optional.of(country));
         when(countryRepository.save(country)).thenReturn(country);
         Country updatedCountry = countryService.update(3L, countryCommand);
