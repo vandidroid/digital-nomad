@@ -19,12 +19,12 @@ public class Country {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-
-    @Nullable
+    private String alpha2Code;
+    private String alpha3Code;
+    private String capital;
     private Long population;
-
-    @Nullable
     private Double area;
+    private String flag;
 
     @JsonIgnore
     @OneToMany(mappedBy = "country")
@@ -39,6 +39,7 @@ public class Country {
         this.area = area;
         this.population = population;
     }
+
     public Country(Long id, String name, Double area, Long population) {
         this.id = id;
         this.name = name;
