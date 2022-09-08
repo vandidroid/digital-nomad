@@ -30,6 +30,11 @@ public class Location {
     @OneToMany(mappedBy = "location")
     private Set<DigitalNomad> digitalNomads;
 
+    public Location(String name, Country country) {
+        this.name = name;
+        this.country = country;
+    }
+
     public Location(Long id, String name, Country country) {
         this.id = id;
         this.name = name;
