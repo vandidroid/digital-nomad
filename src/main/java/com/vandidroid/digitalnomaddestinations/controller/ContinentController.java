@@ -32,7 +32,7 @@ public class ContinentController {
     }
 
     @GetMapping(value = "/{id}", produces = {"application/json"})
-    public Continent findById(Long id) {
+    public Continent findById(@PathVariable Long id) {
         return continentService.findById(id);
     }
 

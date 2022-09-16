@@ -22,6 +22,7 @@ public class Location {
 
     private Long population;
     private double area;
+    private String coverImage;
 
     @ManyToOne
     private Country country;

@@ -1,0 +1,1 @@
+alter table location add cover_image varchar(2083)
