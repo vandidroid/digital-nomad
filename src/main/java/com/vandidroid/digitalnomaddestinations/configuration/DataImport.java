@@ -5,15 +5,19 @@ import com.vandidroid.digitalnomaddestinations.model.dto.UnsplashCommand;
 import com.vandidroid.digitalnomaddestinations.model.entity.Country;
 import com.vandidroid.digitalnomaddestinations.model.entity.DigitalNomad;
 import com.vandidroid.digitalnomaddestinations.model.entity.Location;
+import com.vandidroid.digitalnomaddestinations.model.entity.User;
 import com.vandidroid.digitalnomaddestinations.repository.CountryRepository;
 import com.vandidroid.digitalnomaddestinations.repository.DigitalNomadRepository;
 import com.vandidroid.digitalnomaddestinations.repository.LocationRepository;
+import com.vandidroid.digitalnomaddestinations.repository.UserRepository;
 import com.vandidroid.digitalnomaddestinations.service.UnsplashService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Arrays;
@@ -29,9 +33,12 @@ public class DataImport {
     private LocationRepository locationRepository;
     @Autowired
     private DigitalNomadRepository digitalNomadRepository;
-
     @Autowired
     private UnsplashService unsplashService;
+    @Autowired
+    private UserRepository userRepository;
+
+    private PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     @Bean
     public CommandLineRunner importCountriesFromRestCountries() {
@@ -100,6 +107,21 @@ public class DataImport {
                 digitalNomadRepository.save(new DigitalNomad(11L, "1vandidroid1@gmail.com", "Andrea", "Vincze", "Andi", Gender.FEMALE, location));
             } else {
                 System.out.println(diNoCount + " digital nomads are already in database");
+            }
+        };
+    }
+
+    @Bean
+    public CommandLineRunner insertUsers() {
+        return args -> {
+            System.out.println("Insert user");
+            long userCount = userRepository.count();
+
+            if (userCount == 0) {
+                Location location = locationRepository.findById(1L).get();
+                userRepository.save(new User(11L, "vandidroid", passwordEncoder.encode("babacilu"), true, true, true, true, "1vandidroid1@gmail.com", "Andrea", "Vincze", "Andi", Gender.FEMALE, location));
+            } else {
+                System.out.println(userCount + " users are already in database");
             }
         };
     }
