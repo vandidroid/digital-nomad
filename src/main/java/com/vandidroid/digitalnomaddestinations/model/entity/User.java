@@ -1,11 +1,10 @@
 package com.vandidroid.digitalnomaddestinations.model.entity;
 
 import com.vandidroid.digitalnomaddestinations.model.Gender;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import javax.persistence.*;
 import java.util.Objects;
 
 @Data
