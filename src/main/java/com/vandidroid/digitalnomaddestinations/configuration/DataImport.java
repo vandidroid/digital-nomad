@@ -103,8 +103,8 @@ public class DataImport {
             long diNoCount = digitalNomadRepository.count();
 
             if (diNoCount == 0) {
-                Location location = locationRepository.save(new Location("New York City", countryRepository.findById(240L).get()));
-                digitalNomadRepository.save(new DigitalNomad(11L, "1vandidroid1@gmail.com", "Andrea", "Vincze", "Andi", Gender.FEMALE, location));
+                digitalNomadRepository.save(new DigitalNomad(11L, "1vandidroid1@gmail.com", "Andrea", "Vincze", "Andi", Gender.FEMALE, locationRepository.findById(247L).get()));
+                digitalNomadRepository.save(new DigitalNomad(52L, "orbanszlrd@yahoo.com", "Szilard", "Orban", "CikiCaka", Gender.MALE, locationRepository.findById(5L).get()));
             } else {
                 System.out.println(diNoCount + " digital nomads are already in database");
             }

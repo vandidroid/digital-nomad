@@ -2,11 +2,10 @@ package com.vandidroid.digitalnomaddestinations.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.lang.Nullable;
 
-import javax.persistence.*;
 import java.util.Objects;
 import java.util.Set;
 
