@@ -38,7 +38,8 @@ public class DataImport {
     @Autowired
     private UserRepository userRepository;
 
-    private PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Bean
     public CommandLineRunner importCountriesFromRestCountries() {

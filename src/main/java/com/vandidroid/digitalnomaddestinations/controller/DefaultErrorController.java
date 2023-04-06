@@ -4,11 +4,12 @@ import io.swagger.v3.oas.annotations.Hidden;
 import lombok.Data;
 import org.apache.commons.httpclient.HttpStatus;
 import org.springframework.boot.web.servlet.error.ErrorController;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.http.HttpServletRequest;
-
+@CrossOrigin(origins = "http://travel.dinodev.hu")
 @Hidden
 @RestController
 @RequestMapping("/api/error")

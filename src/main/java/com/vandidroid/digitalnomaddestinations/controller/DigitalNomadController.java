@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Min;
 import java.util.List;
-
+@CrossOrigin(origins = {"http://travel.dinodev.hu", "http://localhost:3000"})
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/nomads")

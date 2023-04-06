@@ -12,6 +12,7 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.Min;
 import java.util.List;
 
+@CrossOrigin(origins = "http://travel.dinodev.hu")
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/continents")
