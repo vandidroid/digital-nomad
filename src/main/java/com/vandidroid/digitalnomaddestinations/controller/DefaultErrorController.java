@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.http.HttpServletRequest;
-@CrossOrigin(origins = "http://travel.dinodev.hu")
+@CrossOrigin(origins = {"http://travel.dinodev.hu", "http://localhost:3000"})
 @Hidden
 @RestController
 @RequestMapping("/api/error")

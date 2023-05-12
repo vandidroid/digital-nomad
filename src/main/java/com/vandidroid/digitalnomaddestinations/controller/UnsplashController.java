@@ -4,7 +4,7 @@ import com.vandidroid.digitalnomaddestinations.service.UnsplashService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin(origins = "http://travel.dinodev.hu")
+@CrossOrigin(origins = {"http://travel.dinodev.hu", "http://localhost:3000"})
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/unsplash")
