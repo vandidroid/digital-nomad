@@ -45,6 +45,8 @@ public class SecurityConfiguration {
                 .oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt)
                 .authorizeHttpRequests()
                 .requestMatchers(HttpMethod.POST,"/api/auth/token").permitAll()
+                .requestMatchers("/swagger-ui/**").permitAll()
+                .requestMatchers("/api-docs/**").permitAll()
                 .requestMatchers(HttpMethod.GET, "/api/countries/**").permitAll()
                 .requestMatchers(HttpMethod.GET, "/api/locations/**").permitAll()
                 .requestMatchers(HttpMethod.GET, "/api/nomads/**").authenticated()
